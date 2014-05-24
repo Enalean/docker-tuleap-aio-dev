@@ -4,6 +4,10 @@ FROM enalean/tuleap-aio
 
 MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
+# Debug
+RUN yum install -y php-pecl-xdebug
+ADD xdebug.ini /etc/php.d/xdebug.ini
+
 RUN mv /usr/share/tuleap /usr/share/tuleap.RPM
 
 ADD . /root/app

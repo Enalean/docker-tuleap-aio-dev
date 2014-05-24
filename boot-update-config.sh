@@ -1,15 +1,10 @@
 #!/bin/bash
 
-set -e
+set -ex
 
-if [ "$TULEAP_INSTALL_TIME" == "true" ]; then
-    # Map appliction id to user who runs the container
-    old_app_uid=$(id -u codendiadm)
-    old_app_gid=$(id -g codendiadm)
-    usermod -g $GID -u $UID codendiadm
-    find / -uid $old_app_uid -exec chown codendiadm {} \;
-    find / -gid $old_app_gid -exec chgrp codendiadm {} \;
-fi
+# Fix php conf #
+perl -pi -e "s%^error_reporting =.*%error_reporting = E_ALL & ~E_DEPRECATED%" /etc/php.ini
+perl -pi -e "s%^display_errors = Off%display_errors = On%" /etc/php.ini
 
 # Deploy ssh key #
 if [ ! -z "$SSH_KEY" ]; then
@@ -21,6 +16,3 @@ fi
 
 # Fix SSH config #
 perl -pi -e "s%GSSAPIAuthentication yes%GSSAPIAuthentication no%" /etc/ssh/sshd_config
-
-
-
