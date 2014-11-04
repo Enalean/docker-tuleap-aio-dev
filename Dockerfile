@@ -1,25 +1,23 @@
 ## Tuleap All In One for development ##
 
-FROM enalean/tuleap-aio
+FROM enalean/tuleap-aio:centos6
 
 MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
-# Debug
-RUN yum install -y php-pecl-xdebug; yum clean all
-ADD xdebug.ini /etc/php.d/xdebug.ini
+RUN yum install -y \
+    php-pecl-xdebug \
+    java-1.7.0-openjdk \
+    tuleap-plugin-ldap \
+    openldap-clients \
+    gitolite3; \
+    yum clean all
 
-# This is JAVA! (needed for XML validation)
-RUN yum install -y java-1.7.0-openjdk; yum clean all
-
-RUN yum -y install tuleap-plugin-ldap; yum clean all
-RUN yum -y install openldap-clients; yum clean all
-
-# Manuel sepcific
-RUN yum -y install yum install gitolite3; yum clean all
+COPY xdebug.ini /etc/php.d/xdebug.ini
+COPY Tuleap.repo /etc/yum.repos.d/
 
 RUN install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined
 
-RUN mv /usr/share/tuleap /usr/share/tuleap.RPM
+RUN rm -rf /usr/share/tuleap
 
 ADD . /root/app
 
