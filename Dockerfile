@@ -8,6 +8,11 @@ RUN yum install -y \
     php-pecl-xdebug \
     java-1.7.0-openjdk \
     tuleap-plugin-ldap \
+    tuleap-plugin-mediawiki \
+    tuleap-core-mailman \
+    tuleap-plugin-forumml \
+    tuleap-plugin-fulltextsearch \
+    tuleap-plugin-webdav \
     openldap-clients \
     gitolite3; \
     yum clean all
