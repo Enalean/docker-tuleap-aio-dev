@@ -1,9 +1,9 @@
 tuleap:
-  image: tuleap
+  build: .
   links:
    - db:db
   volumes:
-   - .:/usr/share/tuleap
+   - tuleap:/usr/share/tuleap
   volumes_from:
    - tuleapdata
   environment:

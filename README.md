@@ -1,5 +1,5 @@
-Docker-Tuleap
-==============
+Deploy Tuleap development environment
+=====================================
 
 Deploy a Tuleap inside a docker container
 
@@ -8,13 +8,34 @@ More info about Tuleap on [tuleap.org](http://www.tuleap.org)
 How to use it?
 ---------------
 
-Just install docker on your system as explained on the [docker](http://docker.io) website. Then run:
+* Install [fig](http://www.fig.sh/install.html) and [docker](http://docker.io)
 
-    $> docker run -ti -e VIRTUAL_HOST=localhost -p 80:80 -p 443:443 -p 22:22 -v /srv/docker/pink:/data enalean/tuleap-aio
+* Link tuleap sources here: ln -s /path/to/tuleap_sources tuleap
 
-Will run the container, just open http://localhost and enjoy !
+* Set environment variables:
 
-Known issues
-------------
+  export MYSQL_ROOT_PASSWORD=welcome0
+  export VIRTUAL_HOST=tuleap.local
 
-* SELinux stuff seems not behaving well (raises errors on docker build)
+* Run fig up
+
+* Add front end IP to your machin hosts file:
+
+  FRONT=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' tuleapaiodev_tuleap_1)
+  echo "$FRONT_IP $VIRTUAL_HOST" >> /etc/hosts
+
+Host to use it with skydock ?
+-----------------------------
+
+* Install & setup docker, fig and [skydock](https://github.com/crosbymichael/skydock)
+
+* Link tuleap sources here: ln -s /path/to/tuleap_sources tuleap
+
+* Set environment variables:
+
+  export MYSQL_ROOT_PASSWORD=welcome0
+  export VIRTUAL_HOST=tuleapaiodev_tuleap.dev.docker
+
+* Run fig up
+
+
