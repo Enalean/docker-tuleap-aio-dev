@@ -20,7 +20,8 @@ RUN yum install -y \
 COPY xdebug.ini /etc/php.d/xdebug.ini
 COPY Tuleap.repo /etc/yum.repos.d/
 
-RUN install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined
+RUN install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
+    cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf
 
 RUN rm -rf /usr/share/tuleap
 
