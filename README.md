@@ -11,13 +11,15 @@ How to use it?
 * Install [fig](http://www.fig.sh/install.html) and [docker](http://docker.io)
 
 * Link tuleap sources here:
-
+```
     ln -s /path/to/tuleap_sources tuleap
+```
 
 * Set environment variables:
-
+```
     export MYSQL_ROOT_PASSWORD=welcome0
     export VIRTUAL_HOST=tuleap.local
+```
 
 * Run
 
