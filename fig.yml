@@ -1,0 +1,30 @@
+tuleap:
+  image: tuleap
+  links:
+   - db:db
+  volumes:
+   - .:/usr/share/tuleap
+  volumes_from:
+   - tuleapdata
+  environment:
+   - VIRTUAL_HOST
+   - MYSQL_ROOT_PASSWORD
+
+db:
+  image: enalean/centos6-mysql55
+  links:
+   - dbdata
+  volumes_from:
+   - dbdata
+  environment:
+   - MYSQL_ROOT_PASSWORD
+
+dbdata:
+  image: busybox
+  volumes:
+    - /var/lib/mysql
+
+tuleapdata:
+  image: busybox
+  volumes:
+    - /data
