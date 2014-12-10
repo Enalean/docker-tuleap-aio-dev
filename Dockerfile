@@ -23,6 +23,8 @@ COPY Tuleap.repo /etc/yum.repos.d/
 RUN install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf
 
+RUN perl -pi -e "s%apc.shm_size=64M%apc.shm_size=128M%" /etc/php.d/apc.ini
+
 RUN rm -rf /usr/share/tuleap
 
 ADD . /root/app
