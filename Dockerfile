@@ -3,18 +3,15 @@ FROM centos:centos6
 
 MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
-COPY rpmforge.repo Tuleap.repo /etc/yum.repos.d/
-
-RUN rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt && \
-    rpm -i http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm && \
-    yum install -y \
+RUN yum install -y \
         epel-release \
     	postfix \
         openssh-server \
-        sudo \
         rsyslog \
         cronie; \
         yum clean all
+
+COPY Tuleap.repo /etc/yum.repos.d/
 
 # Gitolite will not work out-of-the-box with an error like
 # "User gitolite not allowed because account is locked"
@@ -31,13 +28,13 @@ RUN rpm --import http://apt.sw.be/RPM-GPG-KEY.dag.txt && \
 RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     pam_loginuid.so' /etc/pam.d/sshd && \
     sed -i '/session    required   pam_loginuid.so/c\#session    required   pam_loginuid.so' /etc/pam.d/crond && \
     /sbin/service sshd start && \
-    yum install -y --enablerepo=rpmforge-extras --exclude=php-pecl-apcu \
+    yum install -y --exclude=php-pecl-apcu \
     tuleap-install \
     tuleap-core-cvs \
     tuleap-core-subversion \
     tuleap-plugin-agiledashboard \
     tuleap-plugin-hudson \
-    tuleap-plugin-git \
+    tuleap-plugin-git-gitolite3 \
     tuleap-plugin-graphontrackers \
     tuleap-theme-flamingparrot \
     tuleap-documentation \
@@ -53,7 +50,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-webdav \
     openldap-clients \
     python-pip \
-    gitolite3 && \
     yum clean all && \
     pip install pip --upgrade && \
     pip install supervisor && \
