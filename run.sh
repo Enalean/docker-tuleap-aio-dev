@@ -19,6 +19,9 @@ fi
 # Fix path
 ./boot-fixpath.sh
 
+# Align data ownership with images uids/gids
+./fix-owners.sh
+
 # Update DB location
 sed -i "s/^host.*/host $DB_PORT_3306_TCP_ADDR/" /etc/libnss-mysql.cfg
 sed -i "s/^\$sys_dbhost.*/\$sys_dbhost=\"$DB_PORT_3306_TCP_ADDR\";/" /etc/tuleap/conf/database.inc

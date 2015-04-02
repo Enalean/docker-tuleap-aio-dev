@@ -10,11 +10,12 @@ set -e
 [ -f /etc/my.cnf ]                && rm -f /etc/my.cnf
 [ -f /etc/nsswitch.conf ]         && rm -f /etc/nsswitch.conf
 [ -f /etc/crontab ]               && rm -f /etc/crontab
-[ -f /etc/passwd ]               && rm -f /etc/passwd
-[ -f /etc/shadow ]               && rm -f /etc/shadow
-[ -f /etc/group ]               && rm -f /etc/group
+#[ -f /etc/passwd ]               && rm -f /etc/passwd
+#[ -f /etc/shadow ]               && rm -f /etc/shadow
+#[ -f /etc/group ]               && rm -f /etc/group
 [ -d /etc/tuleap ]                && rm -rf /etc/tuleap
 [ -d /etc/httpd/conf ]            && rm -rf /etc/httpd/conf
+[ -d /etc/httpd/conf.d/tuleap-plugins ] && mv /etc/httpd/conf.d/tuleap-plugins /etc/httpd-conf.d-tuleap-plugins
 [ -d /etc/httpd/conf.d ]          && rm -rf /etc/httpd/conf.d
 
 [ -d /home/codendiadm ]  && rm -rf /home/codendiadm
@@ -33,9 +34,9 @@ ln -s /data/etc/libnss-mysql.cfg libnss-mysql.cfg
 ln -s /data/etc/my.cnf my.cnf
 ln -s /data/etc/nsswitch.conf nsswitch.conf
 ln -s /data/etc/crontab crontab
-ln -s /data/etc/passwd passwd
-ln -s /data/etc/shadow shadow
-ln -s /data/etc/group group
+#ln -s /data/etc/passwd passwd
+#ln -s /data/etc/shadow shadow
+#ln -s /data/etc/group group
 
 cd /etc/logrotate.d
 ln -s /data/etc/logrotate.d/httpd httpd
@@ -43,6 +44,9 @@ ln -s /data/etc/logrotate.d/httpd httpd
 cd /etc/httpd
 ln -s /data/etc/httpd/conf conf
 ln -s /data/etc/httpd/conf.d conf.d
+cd /etc/httpd/conf.d
+rm -rf tuleap-plugins
+ln -s /etc/httpd-conf.d-tuleap-plugins tuleap-plugins
 
 cd /home
 ln -s /data/home/codendiadm codendiadm
