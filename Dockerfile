@@ -8,8 +8,9 @@ RUN yum install -y \
     	postfix \
         openssh-server \
         rsyslog \
-        cronie; \
-        yum clean all
+        cronie && \
+    yum install -y python-pip && \
+    yum clean all
 
 COPY Tuleap.repo /etc/yum.repos.d/
 
@@ -51,7 +52,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     openldap-clients \
     python-pip \
     yum clean all && \
-    pip install pip --upgrade && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf && \
