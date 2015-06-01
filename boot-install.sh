@@ -20,6 +20,9 @@ popd > /dev/null
 # Install Tuleap
 bash ./setup.sh --disable-selinux --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap --mysql-host=$DB_PORT_3306_TCP_ADDR --mysql-root-password=$MYSQL_ROOT_PASSWORD --mysql-httpd-host='%'
 
+# Activate LDAP plugin
+php /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap
+
 # Setting root password
 root_passwd=$(generate_passwd)
 echo "root:$root_passwd" |chpasswd

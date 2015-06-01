@@ -26,6 +26,11 @@ fi
 sed -i "s/^host.*/host $DB_PORT_3306_TCP_ADDR/" /etc/libnss-mysql.cfg
 sed -i "s/^\$sys_dbhost.*/\$sys_dbhost=\"$DB_PORT_3306_TCP_ADDR\";/" /etc/tuleap/conf/database.inc
 
+# Update LDAP location
+sed -i "s/^\$sys_ldap_server.*/\$sys_ldap_server = \"ldap:\/\/$LDAP_PORT_389_TCP_ADDR\";/" /etc/tuleap/plugins/ldap/etc/ldap.inc
+sed -i "s/^\$sys_ldap_write_server.*/\$sys_ldap_write_server = \"ldap:\/\/$LDAP_PORT_389_TCP_ADDR\";/" /etc/tuleap/plugins/ldap/etc/ldap.inc
+[ -n "$LDAP_MANAGER_PASSWORD" ] && sed -i "s/^\$sys_ldap_write_password.*/\$sys_ldap_write_password = \"$LDAP_MANAGER_PASSWORD\";/" /etc/tuleap/plugins/ldap/etc/ldap.inc
+
 # Allow configuration update at boot time
 ./boot-update-config.sh
 
