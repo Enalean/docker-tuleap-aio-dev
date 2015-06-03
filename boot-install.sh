@@ -22,6 +22,11 @@ bash ./setup.sh --disable-selinux --sys-default-domain=$VIRTUAL_HOST --sys-org-n
 
 # Activate LDAP plugin
 /usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap
+cp ldap.inc /etc/tuleap/plugins/ldap/etc/ldap.inc
+sed -i "s/^\$sys_auth_type.*/\$sys_auth_type = 'ldap';/" /etc/tuleap/conf/local.inc
+
+# Log level debug
+sed -i "s/^\$sys_logger_level.*/\$sys_logger_level = 'debug';/" /etc/tuleap/conf/local.inc
 
 # Setting root password
 root_passwd=$(generate_passwd)
@@ -44,6 +49,7 @@ service crond stop
 
 # Conf
 mv /etc/httpd/conf            /data/etc/httpd
+mv /etc/httpd/conf.d/tuleap-plugins /etc/httpd-conf.d-tuleap-plugins
 mv /etc/httpd/conf.d          /data/etc/httpd
 mv /etc/tuleap                /data/etc
 mv /etc/aliases               /data/etc
@@ -54,9 +60,6 @@ mv /etc/libnss-mysql-root.cfg /data/etc
 mv /etc/my.cnf                /data/etc
 mv /etc/nsswitch.conf         /data/etc
 mv /etc/crontab               /data/etc
-mv /etc/passwd                /data/etc
-mv /etc/shadow                /data/etc
-mv /etc/group                 /data/etc
 mv /root/.tuleap_passwd       /data/root
 
 # Data

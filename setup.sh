@@ -440,8 +440,9 @@ EOF
     # Note that if sys_default_domain is not a domain, the script will complain
     LIST_OWNER=$PROJECT_NAME-admin@$sys_default_domain
     if [ "$disable_subdomains" = "y" ]; then
-        LIST_OWNER=$PROJECT_NAME-admin@$sys_fullname
+        LIST_OWNER=$PROJECT_NAME-admin@$sys_default_domain
     fi
+
     /usr/lib/mailman/bin/newlist -q mailman $LIST_OWNER $mm_passwd > /dev/null
 
     # Comment existing mailman aliases in /etc/aliases
@@ -568,9 +569,9 @@ EOF
 
         # Create dbauthuser
         $CAT <<EOF | $MYSQL $pass_opt mysql
-GRANT SELECT ON $PROJECT_NAME.user to dbauthuser@$mysql_httpd_host identified by '$dbauth_passwd';
-GRANT SELECT ON $PROJECT_NAME.groups to dbauthuser@$mysql_httpd_host;
-GRANT SELECT ON $PROJECT_NAME.user_group to dbauthuser@$mysql_httpd_host;
+GRANT SELECT ON $PROJECT_NAME.user to dbauthuser@'$mysql_httpd_host' identified by '$dbauth_passwd';
+GRANT SELECT ON $PROJECT_NAME.groups to dbauthuser@'$mysql_httpd_host';
+GRANT SELECT ON $PROJECT_NAME.user_group to dbauthuser@'$mysql_httpd_host';
 FLUSH PRIVILEGES;
 EOF
     fi
