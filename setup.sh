@@ -995,8 +995,10 @@ fi
 
 # Check if IM plugin is installed (works only on rhel).
 enable_plugin_im="false"
-if [ -d "$INSTALL_DIR/plugins/IM" -a "$INSTALL_PROFILE" = "rhel" ]; then
-    enable_plugin_im="true"
+if [ "$INSTALL_PROFILE" = "rhel" ]; then
+    if rpm -q openfire >/dev/null; then
+	enable_plugin_im="true"
+    fi
 fi
 
 enable_plugin_tracker="false"
