@@ -51,6 +51,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-webdav \
     openldap-clients \
     python-pip \
+    php-markdown \
     yum clean all && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
