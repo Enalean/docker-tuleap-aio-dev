@@ -10,7 +10,12 @@ RUN yum install -y \
         rsyslog \
         cronie && \
     yum install -y python-pip && \
-    yum clean all
+    yum clean all && \
+    curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python
+
+# The later commend is meant to work around meld, distribute and supervisord
+# issues on centos6
+# http://stackoverflow.com/questions/7446187/no-module-named-pkg-resources
 
 COPY Tuleap.repo /etc/yum.repos.d/
 
@@ -50,7 +55,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-fulltextsearch \
     tuleap-plugin-webdav \
     openldap-clients \
-    python-pip \
     php-markdown \
     yum clean all && \
     pip install supervisor && \
