@@ -4,7 +4,7 @@ set -ex
 
 # It's a "reboot", just discard image default
 [ -f /etc/aliases ]               && rm -f /etc/aliases
-[ -f /etc/aliases.codendi]        && rm -f /etc/aliases.codendi
+[ -f /etc/aliases.codendi ]        && rm -f /etc/aliases.codendi
 [ -f /etc/logrotate.d/httpd ]     && rm -f /etc/logrotate.d/httpd
 [ -f /etc/libnss-mysql-root.cfg ] && rm -f /etc/libnss-mysql-root.cfg
 [ -f /etc/libnss-mysql.cfg ]      && rm -f /etc/libnss-mysql.cfg
