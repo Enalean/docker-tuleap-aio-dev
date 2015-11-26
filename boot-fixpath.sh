@@ -52,3 +52,5 @@ cd /var/lib
 ln -s /data/lib/mysql mysql
 ln -s /data/lib/tuleap tuleap
 [ -d /data/lib/gitolite ] && ln -s /data/lib/gitolite gitolite
+ln -s /var/lib/tuleap/cvsroot /cvsroot
+ln -s /var/lib/tuleap/svnroot /svnroot
