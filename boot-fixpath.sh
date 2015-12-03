@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -x
 
 # It's a "reboot", just discard image default
 [ -f /etc/aliases ]               && rm -f /etc/aliases
@@ -49,7 +49,6 @@ ln -s /data/home/users users
 ln -s /data/home/groups groups
 
 cd /var/lib
-ln -s /data/lib/mysql mysql
 ln -s /data/lib/tuleap tuleap
 [ -d /data/lib/gitolite ] && ln -s /data/lib/gitolite gitolite
 ln -s /var/lib/tuleap/cvsroot /cvsroot
