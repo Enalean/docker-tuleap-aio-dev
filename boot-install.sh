@@ -18,7 +18,7 @@ cd /var/lib
 popd > /dev/null
 
 # Install Tuleap
-bash /usr/share/tuleap/tools/setup.sh --disable-selinux --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap --mysql-host=$DB_PORT_3306_TCP_ADDR --mysql-user-password=$MYSQL_ROOT_PASSWORD --mysql-httpd-host='%'
+bash /usr/share/tuleap/tools/setup.sh --disable-selinux --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap --mysql-host=db --mysql-user-password=$MYSQL_ROOT_PASSWORD --mysql-httpd-host='%'
 
 # Activate LDAP plugin
 su -c '/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap' -l codendiadm
