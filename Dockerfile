@@ -45,7 +45,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-theme-flamingparrot \
     tuleap-documentation \
     tuleap-customization-default \
-    restler-api-explorer \
+    tuleap-api-explorer \
     php-pecl-xdebug \
     java-1.7.0-openjdk \
     tuleap-plugin-ldap \
@@ -56,6 +56,9 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-webdav \
     openldap-clients \
     php-markdown \
+    php-ZendFramework2-Loader \
+    php-jwt \
+    php-paragonie-random-compat \
     yum clean all && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
