@@ -59,6 +59,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     php-ZendFramework2-Loader \
     php-jwt \
     php-paragonie-random-compat \
+    vim \
     yum clean all && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
