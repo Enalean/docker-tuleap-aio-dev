@@ -60,7 +60,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     php-jwt \
     php-paragonie-random-compat \
     vim \
-    php-guzzle \                    # for Gerrit
+    php-guzzle \
     yum clean all && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
