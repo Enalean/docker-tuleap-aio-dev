@@ -35,32 +35,35 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     sed -i '/session    required   pam_loginuid.so/c\#session    required   pam_loginuid.so' /etc/pam.d/crond && \
     /sbin/service sshd start && \
     yum install -y --exclude=php-pecl-apcu \
+    php-guzzle \
+    tuleap \
     tuleap-install \
-    tuleap-core-cvs \
-    tuleap-core-subversion \
     tuleap-plugin-agiledashboard \
     tuleap-plugin-hudson \
     tuleap-plugin-git-gitolite3 \
+    tuleap-plugin-tracker \
     tuleap-plugin-graphontrackers \
+    tuleap-plugin-cardwall \
+    tuleap-plugin-agiledashboard \
+    tuleap-plugin-ldap \
+    tuleap-plugin-mediawiki \
+    tuleap-plugin-forumml \
+    tuleap-plugin-fulltextsearch \
+    tuleap-plugin-webdav \
+    tuleap-plugin-svn \
+    tuleap-plugin-hudson \
+    tuleap-plugin-hudson-svn \
+    tuleap-plugin-pullrequest \
+    tuleap-plugin-openidconnectclient \
+    tuleap-plugin-proftpd \
     tuleap-theme-flamingparrot \
     tuleap-documentation \
     tuleap-customization-default \
     tuleap-api-explorer \
     php-pecl-xdebug \
     java-1.7.0-openjdk \
-    tuleap-plugin-ldap \
-    tuleap-plugin-mediawiki \
-    tuleap-core-mailman \
-    tuleap-plugin-forumml \
-    tuleap-plugin-fulltextsearch \
-    tuleap-plugin-webdav \
     openldap-clients \
-    php-markdown \
-    php-ZendFramework2-Loader \
-    php-jwt \
-    php-paragonie-random-compat \
     vim \
-    php-guzzle \
     yum clean all && \
     pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
