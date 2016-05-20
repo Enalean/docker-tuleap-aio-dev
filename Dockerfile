@@ -64,7 +64,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     openldap-clients \
     vim \
     yum clean all && \
-    pip install supervisor && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf && \
     perl -pi -e "s%apc.shm_size=64M%apc.shm_size=128M%" /etc/php.d/apc.ini && \
