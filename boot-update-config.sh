@@ -22,3 +22,6 @@ sed -i "s/^apc.shm_size=.*$/apc.shm_size=128M/" /etc/php.d/apc.ini
 
 # Enable API Explorer
 ln -sf /usr/share/restler/vendor/Luracast/Restler/explorer/ /usr/share/tuleap/src/www/api/explorer
+
+# Buliding styles
+scl enable rh-ruby22 "make -C /usr/share/tuleap sass"

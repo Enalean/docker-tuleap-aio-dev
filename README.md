@@ -1,64 +1,19 @@
 Deploy Tuleap development environment
 =====================================
 
-Deploy a Tuleap inside a docker container
+Deploy a Tuleap inside a docker container for use with codenvy
 
 More info about Tuleap on [tuleap.org](http://www.tuleap.org)
 
 How to use it?
 ---------------
 
-* Install [fig](http://www.fig.sh/install.html) and [docker](http://docker.io)
+* Checkout the tuleap sources somewhere
 
-* Link tuleap sources here:
-```
-    ln -s /path/to/tuleap_sources tuleap
-```
+* Then run `docker run -e VIRTUAL_HOST=name_or_ip -v $PWD:/usr/share/tuleap -p 80:80 -p 443:443 -p 22:22 tuleap`
 
-* Set environment variables:
-```
-    export MYSQL_ROOT_PASSWORD=welcome0
-    export VIRTUAL_HOST=tuleap.local
-```
+** `name_or_ip` is the domain name you will use to acces the machine (eg. `localhost`)
 
-* Run
-```
-    fig up
-```
+* After sometime you should get a running machine in the container
+* To login, use informations stored inside the container in `/data/root/.tuleap_passwd`
 
-* Add front end IP to your machin hosts file:
-```
-    FRONT=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' tuleapaiodev_tuleap_1)
-    echo "$FRONT_IP $VIRTUAL_HOST" >> /etc/hosts
-```
-
-* Access with
-```
-    xdg-open http://tuleap.local
-```
-
-Host to use it with skydock ?
------------------------------
-
-* Install & setup docker, fig and [skydock](https://github.com/crosbymichael/skydock)
-
-* Link tuleap sources here:
-```
-    ln -s /path/to/tuleap_sources tuleap
-```
-
-* Set environment variables:
-```
-    export MYSQL_ROOT_PASSWORD=welcome0
-    export VIRTUAL_HOST=tuleapaiodev_tuleap.dev.docker
-```
-
-* Run
-```
-    fig up
-```
-
-* Access with
-```
-    xdg-open http://tuleapaiodev_tuleap.dev.docker
-```

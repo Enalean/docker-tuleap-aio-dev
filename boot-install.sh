@@ -18,12 +18,12 @@ cd /var/lib
 popd > /dev/null
 
 # Install Tuleap
-bash /usr/share/tuleap/tools/setup.sh --disable-selinux --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap --mysql-host=db --mysql-user-password=$MYSQL_ROOT_PASSWORD --mysql-httpd-host='%'
+bash /usr/share/tuleap/tools/setup.sh --disable-domain-name-check --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap 
 
 # Activate LDAP plugin
-su -c '/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap' -l codendiadm
-cp ldap.inc /etc/tuleap/plugins/ldap/etc/ldap.inc
-sed -i "s/^\$sys_auth_type.*/\$sys_auth_type = 'ldap';/" /etc/tuleap/conf/local.inc
+#su -c '/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap' -l codendiadm
+#cp ldap.inc /etc/tuleap/plugins/ldap/etc/ldap.inc
+#sed -i "s/^\$sys_auth_type.*/\$sys_auth_type = 'ldap';/" /etc/tuleap/conf/local.inc
 
 # Log level debug
 sed -i "s/^\$sys_logger_level.*/\$sys_logger_level = 'debug';/" /etc/tuleap/conf/local.inc
