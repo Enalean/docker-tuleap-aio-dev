@@ -5,13 +5,12 @@ MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
 RUN yum install -y \
         epel-release \
-    	postfix \
+        postfix \
         openssh-server \
         rsyslog \
         cronie && \
-    yum install -y python-pip && \
-    yum clean all && \
-    curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python
+    yum install -y supervisor && \
+    yum clean all
 
 # The later commend is meant to work around meld, distribute and supervisord
 # issues on centos6
