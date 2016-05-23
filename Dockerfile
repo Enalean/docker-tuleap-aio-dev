@@ -33,6 +33,7 @@ COPY Tuleap.repo /etc/yum.repos.d/
 RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     pam_loginuid.so' /etc/pam.d/sshd && \
     sed -i '/session    required   pam_loginuid.so/c\#session    required   pam_loginuid.so' /etc/pam.d/crond && \
     /sbin/service sshd start && \
+    rpm --rebuilddb && \
     yum install -y --exclude=php-pecl-apcu \
     tuleap-install \
     tuleap-core-cvs \
