@@ -62,7 +62,8 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     php-paragonie-random-compat \
     vim \
     php-guzzle \
-    rh-ruby22 && \
+    rh-ruby22 \
+    unzip && \
     yum clean all && \
     pip install supervisor && \
     scl enable rh-ruby22 "gem install sass" && \
