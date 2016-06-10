@@ -2,6 +2,10 @@
 
 set -x
 
+service mysqld start
+
+cd /root/app
+
 TULEAP_INSTALL_TIME="false"
 if [ ! -f /data/etc/tuleap/conf/local.inc ]; then
     TULEAP_INSTALL_TIME="true"
@@ -49,8 +53,6 @@ perl -pi -e "s%enable-cache[\t ]+group[\t ]+yes%enable-cache group no%" /etc/nsc
 
 source mysql-utils.sh
 
-start_mysql
-
 if [ "$TULEAP_INSTALL_TIME" == "false" ]; then
     # It seems there is no way to have nscd in foreground
     /usr/sbin/nscd
@@ -62,7 +64,4 @@ fi
 # Activate backend/crontab
 /etc/init.d/tuleap start
 
-stop_mysql
-
-
-exec supervisord -n
+service httpd start

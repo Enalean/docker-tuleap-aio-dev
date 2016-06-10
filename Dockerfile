@@ -80,6 +80,7 @@ COPY . /root/app
 
 ## Run environement
 WORKDIR /root/app
-VOLUME [ "/data", "/usr/share/tuleap" ]
+
 EXPOSE 22 80 443
-CMD ["/root/app/run.sh"]
+
+CMD ["/usr/bin/supervisord", "-n"]
