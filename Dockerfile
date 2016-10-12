@@ -5,6 +5,7 @@ MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
 RUN yum install -y \
         epel-release \
+	centos-release-scl \
         postfix \
         openssh-server \
         rsyslog \
@@ -47,7 +48,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-customization-default \
     tuleap-api-explorer \
     php-pecl-xdebug \
-    java-1.7.0-openjdk \
+    java-1.8.0-openjdk \
     tuleap-plugin-ldap \
     tuleap-plugin-mediawiki \
     tuleap-core-mailman \
@@ -60,7 +61,19 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     php-jwt \
     php-paragonie-random-compat \
     vim \
-    php-guzzle \
+    rh-php56-php-gd \
+    rh-php56-php-pecl \
+    rh-php56-php-pear \
+    rh-php56-php-soap \
+    rh-php56-php-mysqlnd \
+    rh-php56-php-xml \
+    rh-php56-php-mbstring \
+    rh-php56-php-cli \
+    rh-php56-php-opcache \
+    rh-php56-php-process \
+    rh-php56-php-pdo \
+    rh-php56-php-fpm \
+    httpd24-httpd \
     yum clean all && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf && \
