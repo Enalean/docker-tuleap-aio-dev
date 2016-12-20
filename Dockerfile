@@ -73,7 +73,9 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-process \
     rh-php56-php-pdo \
     rh-php56-php-fpm \
-    httpd24-httpd \
+    rh-php56-php-ldap \
+    rh-php56-php-pecl-xdebug \
+    rh-nginx18-nginx \
     yum clean all && \
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf && \
