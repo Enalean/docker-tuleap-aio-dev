@@ -63,4 +63,8 @@ fi
 # Activate backend/crontab
 /etc/init.d/tuleap start
 
+if [ -x /usr/share/tuleap/tools/utils/php56/run.sh ]; then
+    /usr/share/tuleap/tools/utils/php56/run.sh
+fi
+
 exec supervisord -n
