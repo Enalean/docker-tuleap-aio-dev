@@ -63,7 +63,9 @@ fi
 # Activate backend/crontab
 /etc/init.d/tuleap start
 
-if [ -x /usr/share/tuleap/tools/utils/php56/run.sh ]; then
+if [ -n "$RUN_COMMAND" ]; then
+    $RUN_COMMAND
+elif [ -x /usr/share/tuleap/tools/utils/php56/run.sh ]; then
     /usr/share/tuleap/tools/utils/php56/run.sh
 fi
 

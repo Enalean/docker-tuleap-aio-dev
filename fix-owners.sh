@@ -21,7 +21,8 @@ chown -R codendiadm:codendiadm \
     /data/lib/tuleap/trackerv3 \
     /data/lib/tuleap/user \
     /data/lib/tuleap/wiki \
-    /data/lib/tuleap/gitolite/admin
+    /data/lib/tuleap/gitolite/admin \
+    /var/lib/tuleap/svn_plugin
 
 chown codendiadm:codendiadm \
     /data/home/groups \
