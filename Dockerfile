@@ -75,6 +75,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-fpm \
     rh-php56-php-ldap \
     rh-php56-php-pecl-xdebug \
+    sclo-php56-php-pecl-redis \
     rh-nginx18-nginx \
     php-mediawiki-tuleap-123 \
     yum clean all && \
