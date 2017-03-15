@@ -62,7 +62,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     php-paragonie-random-compat \
     vim \
     rh-php56-php-gd \
-    rh-php56-php-pecl \
     rh-php56-php-pear \
     rh-php56-php-soap \
     rh-php56-php-mysqlnd \
@@ -77,7 +76,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-pecl-xdebug \
     rh-php56-php-bcmath \
     rh-nginx18-nginx \
-    php-mediawiki-tuleap-123 \
+    php-mediawiki-tuleap-123 && \
     yum clean all && \
     rm -rf /usr/share/tuleap
 
