@@ -74,6 +74,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-fpm \
     rh-php56-php-ldap \
     rh-php56-php-pecl-xdebug \
+    rh-php56-php-intl \
     rh-php56-php-bcmath php-amqplib-amqplib \
     rh-nginx18-nginx \
     php-mediawiki-tuleap-123 && \
