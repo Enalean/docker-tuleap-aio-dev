@@ -5,6 +5,7 @@ MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
 
 RUN yum install -y \
         epel-release \
+        centos-release-scl \
         postfix \
         openssh-server \
         rsyslog \
