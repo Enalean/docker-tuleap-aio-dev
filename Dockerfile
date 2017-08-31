@@ -81,6 +81,9 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     yum clean all && \
     rm -rf /usr/share/tuleap
 
+# Add fr_FR.UTF-8 locale for translation using gettext
+RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
+
 COPY supervisord.conf /etc/supervisord.conf
 COPY xdebug.ini /etc/php.d/xdebug.ini
 
