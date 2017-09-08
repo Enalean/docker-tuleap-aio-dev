@@ -76,7 +76,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-pecl-xdebug \
     rh-php56-php-intl \
     rh-php56-php-bcmath php-amqplib-amqplib \
-    rh-nginx18-nginx \
+    nginx \
     php-mediawiki-tuleap-123 && \
     yum clean all && \
     rm -rf /usr/share/tuleap
