@@ -68,7 +68,8 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     install -d -m 0755 -o codendiadm -p codendiadm /var/tmp/tuleap_cache/combined && \
     cp /usr/share/tuleap/src/etc/combined.conf.dist /etc/httpd/conf.d/tuleap-plugins/tuleap-combined.conf && \
     perl -pi -e "s%apc.shm_size=64M%apc.shm_size=128M%" /etc/php.d/apc.ini && \
-    rm -rf /usr/share/tuleap
+    rm -rf /usr/share/tuleap && \
+    sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf
 
 # Add fr_FR.UTF-8 locale for translation using gettext
 RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
