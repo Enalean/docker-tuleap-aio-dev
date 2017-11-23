@@ -87,6 +87,7 @@ RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY xdebug.ini /etc/php.d/xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/rh/rh-php56/php.d/15-xdebug.ini
 
 COPY . /root/app
 
