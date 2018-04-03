@@ -35,7 +35,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     sed -i '/session    required   pam_loginuid.so/c\#session    required   pam_loginuid.so' /etc/pam.d/crond && \
     /sbin/service sshd start && \
     rpm --rebuilddb && \
-    yum install -y --exclude=php-pecl-apcu \
+    yum install -y \
     tuleap-install \
     tuleap-core-cvs \
     tuleap-core-subversion \
@@ -47,7 +47,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-documentation \
     tuleap-customization-default \
     tuleap-api-explorer \
-    php-pecl-xdebug \
     java-1.8.0-openjdk \
     tuleap-plugin-ldap \
     tuleap-plugin-mediawiki \
@@ -86,7 +85,6 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
 RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
 COPY supervisord.conf /etc/supervisord.conf
-COPY xdebug.ini /etc/php.d/xdebug.ini
 COPY xdebug-fpm.ini /etc/opt/rh/rh-php56/php.d/15-xdebug.ini
 
 COPY . /root/app

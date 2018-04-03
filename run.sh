@@ -35,10 +35,6 @@ sed -i "s/^\$sys_ldap_write_server.*/\$sys_ldap_write_server = \"ldap:\/\/ldap\"
 # Allow configuration update at boot time
 ./boot-update-config.sh
 
-# Update php config
-perl -pi -e "s%^short_open_tag = Off%short_open_tag = On%" /etc/php.ini
-perl -pi -e "s%^;date.timezone =%date.timezone = Europe/Paris%" /etc/php.ini
-
 # Update Postfix config
 perl -pi -e "s%^#myhostname = host.domain.tld%myhostname = ${VIRTUAL_HOST//_}%" /etc/postfix/main.cf
 perl -pi -e "s%^alias_maps = hash:/etc/aliases%alias_maps = hash:/etc/aliases,hash:/etc/aliases.codendi%" /etc/postfix/main.cf
