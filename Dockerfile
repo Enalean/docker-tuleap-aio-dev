@@ -39,7 +39,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-install \
     tuleap-core-cvs \
     tuleap-core-subversion \
-    perl(Crypt::Eksblowfish::Bcrypt) \
+    'perl(Crypt::Eksblowfish::Bcrypt)' \
     tuleap-plugin-agiledashboard \
     tuleap-plugin-hudson \
     tuleap-plugin-git-gitolite3 \
