@@ -1,11 +1,9 @@
 ## Tuleap All In One for development ##
-FROM centos:centos6
-
-MAINTAINER Manuel Vacelet, manuel.vacelet@enalean.com
+FROM centos:6
 
 RUN yum install -y \
         epel-release \
-	centos-release-scl \
+        centos-release-scl \
         postfix \
         openssh-server \
         rsyslog \
@@ -17,6 +15,9 @@ RUN yum install -y \
 # issues on centos6
 # http://stackoverflow.com/questions/7446187/no-module-named-pkg-resources
 
+COPY centos-vault-rh-php56.repo /etc/yum.repos.d/
+COPY remi-safe.repo /etc/yum.repos.d/
+COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
 COPY Tuleap.repo /etc/yum.repos.d/
 
 # Gitolite will not work out-of-the-box with an error like
@@ -76,6 +77,25 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     rh-php56-php-intl \
     rh-php56-php-bcmath php-amqplib-amqplib \
     sclo-php56-php-pecl-redis \
+    php56-php-intl \
+    php56-php-bcmath \
+    php56-php-gd \
+    php56-php-pear \
+    php56-php-soap \
+    php56-php-mysqlnd \
+    php56-php-xml \
+    php56-php-mbstring \
+    php56-php-cli \
+    php56-php-opcache \
+    php56-php-process \
+    php56-php-pdo \
+    php56-php-fpm \
+    php56-php-ldap \
+    php56-php-pecl-xdebug \
+    php56-php-intl \
+    php56-php-bcmath \
+    php-amqplib-amqplib \
+    php56-php-pecl-redis \
     nginx \
     php-mediawiki-tuleap-123 && \
     yum clean all && \
@@ -87,6 +107,7 @@ RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
 COPY supervisord.conf /etc/supervisord.conf
 COPY xdebug-fpm.ini /etc/opt/rh/rh-php56/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php56/php.d/15-xdebug.ini
 
 COPY . /root/app
 
