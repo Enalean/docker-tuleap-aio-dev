@@ -15,10 +15,8 @@ RUN yum install -y \
 # issues on centos6
 # http://stackoverflow.com/questions/7446187/no-module-named-pkg-resources
 
-COPY centos-vault-rh-php56.repo /etc/yum.repos.d/
-COPY remi-safe.repo /etc/yum.repos.d/
 COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
-COPY Tuleap.repo /etc/yum.repos.d/
+COPY *.repo /etc/yum.repos.d/
 
 # Gitolite will not work out-of-the-box with an error like
 # "User gitolite not allowed because account is locked"
@@ -56,46 +54,27 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-fulltextsearch \
     tuleap-plugin-webdav \
     openldap-clients \
-    php-markdown \
-    php-ZendFramework2-Loader \
-    php-jwt \
-    php-paragonie-random-compat \
     vim \
-    rh-php56-php-gd \
-    rh-php56-php-pear \
-    rh-php56-php-soap \
-    rh-php56-php-mysqlnd \
-    rh-php56-php-xml \
-    rh-php56-php-mbstring \
-    rh-php56-php-cli \
-    rh-php56-php-opcache \
-    rh-php56-php-process \
-    rh-php56-php-pdo \
-    rh-php56-php-fpm \
-    rh-php56-php-ldap \
-    rh-php56-php-pecl-xdebug \
-    rh-php56-php-intl \
-    rh-php56-php-bcmath php-amqplib-amqplib \
-    sclo-php56-php-pecl-redis \
-    php56-php-intl \
-    php56-php-bcmath \
-    php56-php-gd \
-    php56-php-pear \
-    php56-php-soap \
-    php56-php-mysqlnd \
-    php56-php-xml \
-    php56-php-mbstring \
-    php56-php-cli \
-    php56-php-opcache \
-    php56-php-process \
-    php56-php-pdo \
-    php56-php-fpm \
-    php56-php-ldap \
-    php56-php-pecl-xdebug \
-    php56-php-intl \
-    php56-php-bcmath \
-    php-amqplib-amqplib \
-    php56-php-pecl-redis \
+    php72-php-intl \
+    php72-php-bcmath \
+    php72-php-gd \
+    php72-php-pear \
+    php72-php-soap \
+    php72-php-mysqlnd \
+    php72-php-xml \
+    php72-php-mbstring \
+    php72-php-cli \
+    php72-php-opcache \
+    php72-php-process \
+    php72-php-pdo \
+    php72-php-fpm \
+    php72-php-ldap \
+    php72-php-pecl-xdebug \
+    php72-php-intl \
+    php72-php-bcmath \
+    php72-php-pecl-zip \
+    php72-php-pecl-redis \
+    php72-php-pecl-mailparse \
     nginx \
     php-mediawiki-tuleap-123 && \
     yum clean all && \
@@ -106,8 +85,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
 RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
 COPY supervisord.conf /etc/supervisord.conf
-COPY xdebug-fpm.ini /etc/opt/rh/rh-php56/php.d/15-xdebug.ini
-COPY xdebug-fpm.ini /etc/opt/remi/php56/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php72/php.d/15-xdebug.ini
 
 COPY . /root/app
 
