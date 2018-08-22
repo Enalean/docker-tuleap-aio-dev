@@ -2,7 +2,7 @@
 
 set -x
 
-while ! mysql -hdb -uroot -p$MYSQL_ROOT_PASSWORD -e "show databases" >/dev/null; do
+while ! /opt/rh/rh-mysql57/root/bin/mysql -hdb -uroot -p$MYSQL_ROOT_PASSWORD -e "show databases" >/dev/null; do
     echo "Wait for the db";
     sleep 1
 done
@@ -14,14 +14,14 @@ if [ ! -f /data/etc/tuleap/conf/local.inc ]; then
 
     # If tuleap directory is not in data, assume it's first boot and move
     # everything in the mounted dir
-    ./boot-install.sh
+    /root/app/boot-install.sh
 fi
 
 # Fix path
-./boot-fixpath.sh
+/root/app/boot-fixpath.sh
 
 # Align data ownership with images uids/gids
-./fix-owners.sh
+/root/app/fix-owners.sh
 
 # Update DB location
 sed -i "s/^host.*/host db/" /etc/libnss-mysql.cfg
@@ -33,7 +33,7 @@ sed -i "s/^\$sys_ldap_write_server.*/\$sys_ldap_write_server = \"ldap:\/\/ldap\"
 [ -n "$LDAP_MANAGER_PASSWORD" ] && sed -i "s/^\$sys_ldap_write_password.*/\$sys_ldap_write_password = \"$LDAP_MANAGER_PASSWORD\";/" /etc/tuleap/plugins/ldap/etc/ldap.inc
 
 # Allow configuration update at boot time
-./boot-update-config.sh
+/root/app/boot-update-config.sh
 
 # Update Postfix config
 perl -pi -e "s%^#myhostname = host.domain.tld%myhostname = ${VIRTUAL_HOST//_}%" /etc/postfix/main.cf
@@ -43,22 +43,19 @@ perl -pi -e "s%^#recipient_delimiter = %recipient_delimiter = %" /etc/postfix/ma
 perl -pi -e "s%^inet_protocols = .*%inet_protocols = ipv4%" /etc/postfix/main.cf
 
 # Email whitelist
-./whitelist_emails.sh
+/root/app/whitelist_emails.sh
 echo "transport_maps = hash:/etc/postfix/transport" >> /etc/postfix/main.cf
 
 # Update nscd config
 perl -pi -e "s%enable-cache[\t ]+group[\t ]+yes%enable-cache group no%" /etc/nscd.conf
 
 if [ "$TULEAP_INSTALL_TIME" == "false" ]; then
-    # It seems there is no way to have nscd in foreground
-    /usr/sbin/nscd
-
     # DB upgrade (after config as we might depends on it)
-    ./boot-upgrade.sh
+    /root/app/boot-upgrade.sh
 fi
 
 # Activate backend/crontab
-/etc/init.d/tuleap start
+systemctl start tuleap
 
 if [ -n "$RUN_COMMAND" ]; then
     $RUN_COMMAND
@@ -66,4 +63,5 @@ elif [ -x /usr/share/tuleap/tools/utils/php56/run.sh ]; then
     /usr/share/tuleap/tools/utils/php56/run.sh
 fi
 
-exec supervisord -n
+systemctl start nginx
+systemctl start tuleap-php-fpm

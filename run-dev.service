@@ -1,0 +1,14 @@
+[Unit]
+Description=Run Tuleap dev
+After=network.target
+After=network-online.target
+
+[Service]
+User=root
+Type=oneshot
+StandardOutput=journal+console
+ExecStart=/root/app/run.sh
+EnvironmentFile=/root/.tuleap_env
+
+[Install]
+WantedBy=multi-user.target

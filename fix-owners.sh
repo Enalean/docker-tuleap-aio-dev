@@ -12,7 +12,6 @@ chown -R codendiadm:codendiadm \
     /data/etc/httpd/conf.d/codendi_svnroot.conf \
     /data/etc/httpd/conf.d/codendi_svnroot.conf.old \
     /data/home/codendiadm \
-    /data/lib/tuleap/boomerang \
     /data/lib/tuleap/docman \
     /data/lib/tuleap/forumml \
     /data/lib/tuleap/images \

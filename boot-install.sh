@@ -18,7 +18,12 @@ cd /var/lib
 popd > /dev/null
 
 # Install Tuleap
-bash /usr/share/tuleap/tools/setup.sh --disable-domain-name-check --sys-default-domain=$VIRTUAL_HOST --sys-org-name=Tuleap --sys-long-org-name=Tuleap --mysql-host=db --mysql-user-password=$MYSQL_ROOT_PASSWORD --mysql-httpd-host='%'
+/usr/share/tuleap/tools/setup.el7.sh \
+    --assumeyes \
+    --configure \
+    --mysql-server=db \
+    --mysql-password=$MYSQL_ROOT_PASSWORD \
+    --server-name=$VIRTUAL_HOST
 
 # Activate LDAP plugin
 su -c '/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap' -l codendiadm
@@ -35,17 +40,11 @@ root_passwd=$(generate_passwd)
 echo "root:$root_passwd" |chpasswd
 echo "root: $root_passwd" >> /root/.tuleap_passwd
 
-# Place for post install stuff
-./boot-postinstall.sh
-
 # Create fake file to avoid error below when moving
 touch /etc/aliases.codendi
 
 # Ensure system will be synchronized ASAP
 /usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/src/utils/launch_system_check.php
-
-service httpd stop
-service crond stop
 
 ### Move all generated files to persistant storage ###
 
