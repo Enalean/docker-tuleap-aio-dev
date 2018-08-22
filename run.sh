@@ -65,3 +65,6 @@ fi
 
 systemctl start nginx
 systemctl start tuleap-php-fpm
+systemctl start tuleap-process-system-events-default.timer
+systemctl start tuleap-launch-system-check.timer
+systemctl start tuleap-process-system-events-git.timer
