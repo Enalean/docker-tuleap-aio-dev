@@ -2,6 +2,7 @@
 Description=Run Tuleap dev
 After=network.target
 After=network-online.target
+After=default.target
 
 [Service]
 User=root
@@ -11,4 +12,4 @@ ExecStart=/root/app/run.sh
 EnvironmentFile=/root/.tuleap_env
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target

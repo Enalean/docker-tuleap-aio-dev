@@ -2,6 +2,8 @@
 
 set -x
 
+systemctl start systemd-user-sessions.service
+
 while ! /opt/rh/rh-mysql57/root/bin/mysql -hdb -uroot -p$MYSQL_ROOT_PASSWORD -e "show databases" >/dev/null; do
     echo "Wait for the db";
     sleep 1
