@@ -41,6 +41,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-agiledashboard \
     tuleap-plugin-hudson \
     tuleap-plugin-git-gitolite3 \
+    tuleap-plugin-gitlfs \
     tuleap-plugin-graphontrackers \
     tuleap-theme-flamingparrot \
     tuleap-documentation \
