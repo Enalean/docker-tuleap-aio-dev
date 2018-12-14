@@ -37,31 +37,33 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
-    php56-php-intl \
-    php56-php-bcmath \
-    php56-php-gd \
-    php56-php-pear \
-    php56-php-soap \
-    php56-php-mysqlnd \
-    php56-php-xml \
-    php56-php-mbstring \
-    php56-php-cli \
-    php56-php-opcache \
-    php56-php-process \
-    php56-php-pdo \
-    php56-php-fpm \
-    php56-php-ldap \
-    php56-php-pecl-xdebug \
-    php56-php-intl \
-    php56-php-bcmath \
-    php56-php-pecl-redis \
+    php72-php-intl \
+    php72-php-bcmath \
+    php72-php-gd \
+    php72-php-pear \
+    php72-php-soap \
+    php72-php-mysqlnd \
+    php72-php-xml \
+    php72-php-mbstring \
+    php72-php-cli \
+    php72-php-opcache \
+    php72-php-process \
+    php72-php-pdo \
+    php72-php-fpm \
+    php72-php-ldap \
+    php72-php-pecl-xdebug \
+    php72-php-intl \
+    php72-php-bcmath \
+    php72-php-pecl-zip \
+    php72-php-pecl-redis \
+    php72-php-pecl-mailparse \
     nginx && \
     yum clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php56/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php72/php.d/15-xdebug.ini
 
 COPY . /root/app
 
