@@ -23,7 +23,7 @@ fi
 /root/app/boot-fixpath.sh
 
 # Align data ownership with images uids/gids
-/root/app/fix-owners.sh
+/usr/share/tuleap/tools/docker/tuleap-aio/fix-owners.sh
 
 # Update DB location
 sed -i "s/^host.*/host db/" /etc/libnss-mysql.cfg
