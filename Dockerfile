@@ -52,30 +52,30 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
     tuleap-plugin-mediawiki \
     tuleap-core-mailman \
     tuleap-plugin-forumml \
-    tuleap-plugin-fulltextsearch \
     tuleap-plugin-webdav \
     openldap-clients \
     vim \
-    php72-php-intl \
-    php72-php-bcmath \
-    php72-php-gd \
-    php72-php-pear \
-    php72-php-soap \
-    php72-php-mysqlnd \
-    php72-php-xml \
-    php72-php-mbstring \
-    php72-php-cli \
-    php72-php-opcache \
-    php72-php-process \
-    php72-php-pdo \
-    php72-php-fpm \
-    php72-php-ldap \
-    php72-php-pecl-xdebug \
-    php72-php-intl \
-    php72-php-bcmath \
-    php72-php-pecl-zip \
-    php72-php-pecl-redis \
-    php72-php-pecl-mailparse \
+    php73-php-intl \
+    php73-php-bcmath \
+    php73-php-gd \
+    php73-php-pear \
+    php73-php-soap \
+    php73-php-mysqlnd \
+    php73-php-xml \
+    php73-php-mbstring \
+    php73-php-cli \
+    php73-php-opcache \
+    php73-php-process \
+    php73-php-pdo \
+    php73-php-fpm \
+    php73-php-ldap \
+    php73-php-sodium \
+    php73-php-pecl-xdebug \
+    php73-php-intl \
+    php73-php-bcmath \
+    php73-php-pecl-zip \
+    php73-php-pecl-redis \
+    php73-php-pecl-mailparse \
     nginx \
     php-mediawiki-tuleap-123 && \
     yum clean all && \
@@ -86,7 +86,7 @@ RUN sed -i '/session    required     pam_loginuid.so/c\#session    required     
 RUN localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
 COPY supervisord.conf /etc/supervisord.conf
-COPY xdebug-fpm.ini /etc/opt/remi/php72/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php73/php.d/15-xdebug.ini
 
 COPY . /root/app
 

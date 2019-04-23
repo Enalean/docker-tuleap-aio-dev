@@ -62,8 +62,8 @@ fi
 
 if [ -n "$RUN_COMMAND" ]; then
     $RUN_COMMAND
-elif [ -x /usr/share/tuleap/tools/utils/php72/run.sh ]; then
-    /usr/share/tuleap/tools/utils/php72/run.sh
+elif [ -x /usr/share/tuleap/tools/utils/php73/run.sh ]; then
+    /usr/share/tuleap/tools/utils/php73/run.sh
 fi
 
 exec supervisord -n
