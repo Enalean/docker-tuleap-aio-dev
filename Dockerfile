@@ -37,33 +37,34 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
-    php72-php-intl \
-    php72-php-bcmath \
-    php72-php-gd \
-    php72-php-pear \
-    php72-php-soap \
-    php72-php-mysqlnd \
-    php72-php-xml \
-    php72-php-mbstring \
-    php72-php-cli \
-    php72-php-opcache \
-    php72-php-process \
-    php72-php-pdo \
-    php72-php-fpm \
-    php72-php-ldap \
-    php72-php-pecl-xdebug \
-    php72-php-intl \
-    php72-php-bcmath \
-    php72-php-pecl-zip \
-    php72-php-pecl-redis \
-    php72-php-pecl-mailparse \
+    php73-php-intl \
+    php73-php-bcmath \
+    php73-php-gd \
+    php73-php-pear \
+    php73-php-soap \
+    php73-php-mysqlnd \
+    php73-php-xml \
+    php73-php-mbstring \
+    php73-php-cli \
+    php73-php-opcache \
+    php73-php-process \
+    php73-php-pdo \
+    php73-php-fpm \
+    php73-php-ldap \
+    php73-php-sodium \
+    php73-php-pecl-xdebug \
+    php73-php-intl \
+    php73-php-bcmath \
+    php73-php-pecl-zip \
+    php73-php-pecl-redis \
+    php73-php-pecl-mailparse \
     nginx && \
     yum clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php72/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php73/php.d/15-xdebug.ini
 
 COPY . /root/app
 
