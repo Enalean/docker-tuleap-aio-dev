@@ -66,7 +66,7 @@ elif [ -x /usr/share/tuleap/tools/utils/php73/run.sh ]; then
 fi
 
 systemctl start nginx
-systemctl start tuleap-php-fpm
+systemctl start tuleap-php73-fpm
 systemctl start tuleap-process-system-events-default.timer
 systemctl start tuleap-launch-system-check.timer
 systemctl start tuleap-process-system-events-git.timer
