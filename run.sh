@@ -65,7 +65,9 @@ elif [ -x /usr/share/tuleap/tools/utils/php73/run.sh ]; then
     /usr/share/tuleap/tools/utils/php73/run.sh
 fi
 
+systemctl disable tuleap-php-fpm
 systemctl start nginx
+systemctl stop tuleap-php-fpm # Make sure the default Tuleap PHP FPM service is stopped
 systemctl start tuleap-php73-fpm
 systemctl start tuleap-process-system-events-default.timer
 systemctl start tuleap-launch-system-check.timer
