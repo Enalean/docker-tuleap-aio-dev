@@ -44,7 +44,7 @@ echo "root: $root_passwd" >> /root/.tuleap_passwd
 touch /etc/aliases.codendi
 
 # Ensure system will be synchronized ASAP
-/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/src/utils/launch_system_check.php
+/usr/bin/tuleap queue-system-check
 
 ### Move all generated files to persistant storage ###
 
