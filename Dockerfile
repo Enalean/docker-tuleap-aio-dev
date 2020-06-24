@@ -56,7 +56,6 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     php73-php-intl \
     php73-php-bcmath \
     php73-php-pecl-zip \
-    php73-php-pecl-redis \
     php73-php-pecl-mailparse \
     nginx && \
     yum clean all && \
