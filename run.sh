@@ -70,3 +70,4 @@ systemctl start tuleap-php-fpm
 systemctl start tuleap-process-system-events-default.timer
 systemctl start tuleap-launch-system-check.timer
 systemctl start tuleap-process-system-events-git.timer
+systemctl start httpd
