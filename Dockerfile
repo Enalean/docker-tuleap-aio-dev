@@ -33,6 +33,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     tuleap-plugin-git \
     tuleap-plugin-svn \
     tuleap-plugin-hudson\* \
+    tuleap-plugin-mediawiki \
     tuleap-api-explorer \
     java-1.8.0-openjdk \
     openldap-clients \
