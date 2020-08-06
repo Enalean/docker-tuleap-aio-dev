@@ -56,11 +56,8 @@ mv /etc/tuleap                /data/etc
 mv /etc/aliases               /data/etc
 mv /etc/aliases.codendi       /data/etc
 mv /etc/logrotate.d/httpd     /data/etc/logrotate.d
-mv /etc/libnss-mysql.cfg      /data/etc
-mv /etc/libnss-mysql-root.cfg /data/etc
 mv /etc/my.cnf                /data/etc
 mv /etc/nsswitch.conf         /data/etc
-mv /etc/crontab               /data/etc
 mv /root/.tuleap_passwd       /data/root
 
 # Data
