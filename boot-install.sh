@@ -27,7 +27,7 @@ popd > /dev/null
 
 # Activate LDAP plugin
 su -c '/usr/share/tuleap/src/utils/php-launcher.sh /usr/share/tuleap/tools/utils/admin/activate_plugin.php ldap' -l codendiadm
-cp ldap.inc /etc/tuleap/plugins/ldap/etc/ldap.inc
+cp /root/app/ldap.inc /etc/tuleap/plugins/ldap/etc/ldap.inc
 sed -i "s/^\$sys_auth_type.*/\$sys_auth_type = 'ldap';/" /etc/tuleap/conf/local.inc
 
 # Log level debug
