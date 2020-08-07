@@ -26,7 +26,7 @@ fi
 /usr/share/tuleap/tools/docker/tuleap-aio/fix-owners.sh
 
 # Update DB location
-sed -i "s/^host.*/host db/" /etc/libnss-mysql.cfg
+[ -f /etc/libnss-mysql.cfg ] && sed -i "s/^host.*/host db/" /etc/libnss-mysql.cfg
 sed -i "s/^\$sys_dbhost.*/\$sys_dbhost=\"db\";/" /etc/tuleap/conf/database.inc
 
 # Update LDAP location
