@@ -90,6 +90,7 @@ COPY xdebug-fpm.ini /etc/opt/remi/php73/php.d/15-xdebug.ini
 COPY . /root/app
 
 ## Run environement
+ENV PHP_VERSION php74
 WORKDIR /root/app
 VOLUME [ "/data", "/usr/share/tuleap" ]
 EXPOSE 22 80 443
