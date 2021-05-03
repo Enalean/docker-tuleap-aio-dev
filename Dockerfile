@@ -86,7 +86,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php73/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php74/php.d/15-xdebug.ini
 
 COPY . /root/app
 
