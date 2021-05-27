@@ -39,26 +39,6 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
-    php73-php-intl \
-    php73-php-bcmath \
-    php73-php-gd \
-    php73-php-pear \
-    php73-php-soap \
-    php73-php-mysqlnd \
-    php73-php-xml \
-    php73-php-mbstring \
-    php73-php-cli \
-    php73-php-opcache \
-    php73-php-process \
-    php73-php-pdo \
-    php73-php-fpm \
-    php73-php-ldap \
-    php73-php-sodium \
-    php73-php-pecl-xdebug \
-    php73-php-intl \
-    php73-php-bcmath \
-    php73-php-pecl-zip \
-    php73-php-pecl-mailparse \
     php74-php-intl \
     php74-php-bcmath \
     php74-php-gd \
