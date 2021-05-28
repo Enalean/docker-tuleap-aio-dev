@@ -7,7 +7,6 @@ STOPSIGNAL SIGRTMIN+3
 COPY remi-safe.repo /etc/yum.repos.d/
 COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
 COPY Tuleap.repo /etc/yum.repos.d/
-COPY run-dev.service /etc/systemd/system
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -18,7 +17,6 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/* && \
-    systemctl enable run-dev.service && \
     rpm --rebuilddb && \
     yum install -y \
     epel-release \
@@ -66,13 +64,9 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php74/php.d/15-xdebug.ini
-
-COPY . /root/app
-
 ## Run environement
 ENV PHP_VERSION php74
-WORKDIR /root/app
+WORKDIR /usr/share/tuleap
 VOLUME [ "/data", "/usr/share/tuleap" ]
 EXPOSE 22 80 443
-CMD ["/usr/sbin/init"]
+CMD ["/usr/share/tuleap/tools/docker/tuleap-aio-dev/init"]
