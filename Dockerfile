@@ -64,7 +64,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
 
-## Run environement
+## Run environment
 ENV PHP_VERSION php74
 WORKDIR /usr/share/tuleap
 VOLUME [ "/data", "/usr/share/tuleap" ]

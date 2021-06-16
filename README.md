@@ -1,7 +1,7 @@
 Deploy Tuleap development environment
 =====================================
 
-More info about Tuleap on [tuleap.org](http://www.tuleap.org)
+More info about Tuleap on [tuleap.org](https://www.tuleap.org)
 
 How to use it?
 ---------------
