@@ -3,7 +3,7 @@ name: Build and publish Docker images
 on:
   push:
     branches:
-      - c7-php74-nginx-v2
+      - c7-php80-nginx
   workflow_dispatch:
 
 permissions:
