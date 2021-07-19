@@ -7,6 +7,7 @@ STOPSIGNAL SIGRTMIN+3
 COPY remi-safe.repo /etc/yum.repos.d/
 COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
 COPY Tuleap.repo /etc/yum.repos.d/
+COPY tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     systemd-tmpfiles-setup.service ] || rm -f $i; done); \
