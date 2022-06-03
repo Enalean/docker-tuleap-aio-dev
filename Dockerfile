@@ -62,7 +62,8 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     yum clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
-    localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8
+    localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8 && \
+    localedef -i pt_BR -c -f UTF-8 pt_BR.UTF-8
 
 COPY xdebug-fpm.ini /etc/opt/remi/php80/php.d/15-xdebug.ini
 
