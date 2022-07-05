@@ -38,6 +38,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
+    less \
     php80-php-intl \
     php80-php-bcmath \
     php80-php-gd \
