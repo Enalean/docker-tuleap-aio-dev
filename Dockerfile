@@ -24,6 +24,7 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     postfix \
     openssh-server && \
     yum install -y \
+    rh-mysql80-mysql \
     tuleap-plugin-agiledashboard \
     tuleap-plugin-graphontrackers \
     tuleap-theme-burningparrot \
