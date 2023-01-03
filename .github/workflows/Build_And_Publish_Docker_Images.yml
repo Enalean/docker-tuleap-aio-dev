@@ -3,7 +3,7 @@ name: Build and publish Docker images
 on:
   push:
     branches:
-      - c7-php80-nginx
+      - c7-php81-nginx
   workflow_dispatch:
 
 permissions:
@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - name: Get lowercase base image name

@@ -7,6 +7,7 @@ STOPSIGNAL SIGRTMIN+3
 COPY remi-safe.repo /etc/yum.repos.d/
 COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
 COPY Tuleap.repo /etc/yum.repos.d/
+COPY tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
 
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     systemd-tmpfiles-setup.service ] || rm -f $i; done); \
@@ -40,27 +41,27 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     openldap-clients \
     vim \
     less \
-    php80-php-intl \
-    php80-php-bcmath \
-    php80-php-gd \
-    php80-php-pear \
-    php80-php-soap \
-    php80-php-mysqlnd \
-    php80-php-xml \
-    php80-php-mbstring \
-    php80-php-cli \
-    php80-php-opcache \
-    php80-php-process \
-    php80-php-pdo \
-    php80-php-fpm \
-    php80-php-ldap \
-    php80-php-sodium \
-    php80-php-pecl-xdebug \
-    php80-php-intl \
-    php80-php-bcmath \
-    php80-php-pecl-zip \
-    php80-php-pecl-mailparse \
-    php80-php-pecl-redis5 \
+    php81-php-intl \
+    php81-php-bcmath \
+    php81-php-gd \
+    php81-php-soap \
+    php81-php-mysqlnd \
+    php81-php-xml \
+    php81-php-mbstring \
+    php81-php-cli \
+    php81-php-opcache \
+    php81-php-process \
+    php81-php-pdo \
+    php81-php-fpm \
+    php81-php-ldap \
+    php81-php-sodium \
+    php81-php-pecl-xdebug \
+    php81-php-intl \
+    php81-php-bcmath \
+    php81-php-ffi \
+    php81-php-pecl-zip \
+    php81-php-pecl-mailparse \
+    php81-php-pecl-redis5 \
     nginx && \
     yum clean all && \
     rm -rf /usr/share/tuleap && \
@@ -68,10 +69,10 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8 && \
     localedef -i pt_BR -c -f UTF-8 pt_BR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php80/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php81/php.d/15-xdebug.ini
 
 ## Run environment
-ENV PHP_VERSION php80
+ENV PHP_VERSION php81
 WORKDIR /usr/share/tuleap
 VOLUME [ "/data", "/usr/share/tuleap" ]
 EXPOSE 22 80 443
