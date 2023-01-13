@@ -1,31 +1,27 @@
-FROM centos:7
+FROM rockylinux@sha256:99376f245b2d13d273260654d3b769918aa8af29b04f771add8ea0c9bf40a66c
 
 ENV container docker
 
 STOPSIGNAL SIGRTMIN+3
 
-COPY remi-safe.repo /etc/yum.repos.d/
-COPY RPM-GPG-KEY-remi /etc/pki/rpm-gpg/
-COPY Tuleap.repo /etc/yum.repos.d/
-COPY tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
-
-RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-    systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-    rm -f /lib/systemd/system/multi-user.target.wants/*;\
+RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /etc/systemd/system/*.wants/*;\
     rm -f /lib/systemd/system/local-fs.target.wants/*; \
     rm -f /lib/systemd/system/sockets.target.wants/*udev*; \
     rm -f /lib/systemd/system/sockets.target.wants/*initctl*; \
     rm -f /lib/systemd/system/basic.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/* && \
-    rpm --rebuilddb && \
-    yum install -y \
-    epel-release \
-    centos-release-scl \
+    dnf install -y \
+        epel-release \
+        https://rpms.remirepo.net/enterprise/remi-release-9.rpm \
+        https://ci.tuleap.net/yum/tuleap/rhel/9/dev/x86_64/tuleap-community-release.rpm && \
+    dnf install -y \
+    glibc-locale-source \
+    glibc-langpack-en \
+    glibc-langpack-fr \
+    glibc-langpack-pt \
     postfix \
-    openssh-server && \
-    yum install -y \
-    rh-mysql80-mysql \
+    openssh-server \
     tuleap-plugin-agiledashboard \
     tuleap-plugin-graphontrackers \
     tuleap-theme-burningparrot \
@@ -61,9 +57,8 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     php81-php-ffi \
     php81-php-pecl-zip \
     php81-php-pecl-mailparse \
-    php81-php-pecl-redis5 \
-    nginx && \
-    yum clean all && \
+    php81-php-pecl-redis5 && \
+    dnf clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8 && \
