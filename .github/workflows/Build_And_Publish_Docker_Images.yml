@@ -3,7 +3,7 @@ name: Build and publish Docker images
 on:
   push:
     branches:
-      - el9-php81
+      - el9-php82
   workflow_dispatch:
 
 permissions:
