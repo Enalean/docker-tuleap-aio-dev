@@ -41,27 +41,27 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     openldap-clients \
     vim \
     less \
-    php81-php-intl \
-    php81-php-bcmath \
-    php81-php-gd \
-    php81-php-soap \
-    php81-php-mysqlnd \
-    php81-php-xml \
-    php81-php-mbstring \
-    php81-php-cli \
-    php81-php-opcache \
-    php81-php-process \
-    php81-php-pdo \
-    php81-php-fpm \
-    php81-php-ldap \
-    php81-php-sodium \
-    php81-php-pecl-xdebug \
-    php81-php-intl \
-    php81-php-bcmath \
-    php81-php-ffi \
-    php81-php-pecl-zip \
-    php81-php-pecl-mailparse \
-    php81-php-pecl-redis5 \
+    php82-php-intl \
+    php82-php-bcmath \
+    php82-php-gd \
+    php82-php-soap \
+    php82-php-mysqlnd \
+    php82-php-xml \
+    php82-php-mbstring \
+    php82-php-cli \
+    php82-php-opcache \
+    php82-php-process \
+    php82-php-pdo \
+    php82-php-fpm \
+    php82-php-ldap \
+    php82-php-sodium \
+    php82-php-pecl-xdebug \
+    php82-php-intl \
+    php82-php-bcmath \
+    php82-php-ffi \
+    php82-php-pecl-zip \
+    php82-php-pecl-mailparse \
+    php82-php-pecl-redis5 \
     nginx && \
     yum clean all && \
     rm -rf /usr/share/tuleap && \
@@ -69,10 +69,10 @@ RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8 && \
     localedef -i pt_BR -c -f UTF-8 pt_BR.UTF-8
 
-COPY xdebug-fpm.ini /etc/opt/remi/php81/php.d/15-xdebug.ini
+COPY xdebug-fpm.ini /etc/opt/remi/php82/php.d/15-xdebug.ini
 
 ## Run environment
-ENV PHP_VERSION php81
+ENV PHP_VERSION php82
 WORKDIR /usr/share/tuleap
 VOLUME [ "/data", "/usr/share/tuleap" ]
 EXPOSE 22 80 443
