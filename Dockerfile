@@ -4,6 +4,9 @@ ENV container docker
 
 STOPSIGNAL SIGRTMIN+3
 
+COPY tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
+COPY xdebug-fpm.ini /etc/opt/remi/php82/php.d/15-xdebug.ini
+
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /etc/systemd/system/*.wants/*;\
     rm -f /lib/systemd/system/local-fs.target.wants/*; \
@@ -63,8 +66,6 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
     localedef -i fr_FR -c -f UTF-8 fr_FR.UTF-8 && \
     localedef -i pt_BR -c -f UTF-8 pt_BR.UTF-8
-
-COPY xdebug-fpm.ini /etc/opt/remi/php82/php.d/15-xdebug.ini
 
 ## Run environment
 ENV PHP_VERSION php82
