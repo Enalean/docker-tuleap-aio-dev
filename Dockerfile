@@ -39,6 +39,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
+    mysql \
     less \
     php82-php-intl \
     php82-php-bcmath \
