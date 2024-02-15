@@ -4,3 +4,8 @@ updates:
   directory: "/"
   schedule:
     interval: daily
+- package-ecosystem: "github-actions"
+  directory: "/"
+  target-branch: "el9-php82"
+  schedule:
+    interval: daily
