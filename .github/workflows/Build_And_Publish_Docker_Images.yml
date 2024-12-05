@@ -28,7 +28,7 @@ jobs:
       - name: Get lowercase base image name
         run: echo BASE_IMAGE_NAME="$(echo ${{ github.repository_owner }} | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
       - name: Build image
-        run: docker build -t ghcr.io/${{ env.BASE_IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ matrix.os_base }}-${{ matrix.php_base }} --label org.opencontainers.image.revision=${{ github.sha }} --label workflow_run_id=${{ github.run_id }} .
+        run: docker build -t ghcr.io/${{ env.BASE_IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ matrix.os_base }}-${{ matrix.php_base }} --build-arg="PHP_BASE=${{ matrix.php_base }}" -f ${{ matrix.os_base }}.dockerfile --label org.opencontainers.image.revision=${{ github.sha }} --label workflow_run_id=${{ github.run_id }} .
       - name: Install Cosign
         uses: sigstore/cosign-installer@dc72c7d5c4d10cd6bcb8cf6e3fd625a9e5e537da # tag=v3.7.0
       - name: Log into ghcr.io
