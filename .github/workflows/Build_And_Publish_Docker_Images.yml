@@ -21,8 +21,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
     steps:
-      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           persist-credentials: false
       - name: Get lowercase base image name
@@ -36,8 +37,5 @@ jobs:
       - name: Publish image
         run: docker push ghcr.io/${{ env.BASE_IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ matrix.os_base }}-${{ matrix.php_base }}
       - name: Sign image
-        env:
-          VAULT_ADDR: ${{ secrets.VAULT_ADDR }}
         run: |
-          export VAULT_TOKEN=$(curl "$VAULT_ADDR"/v1/auth/approle/login --silent --fail -X POST --data '{"role_id": "${{ secrets.VAULT_ROLE_ID_SIGNING }}", "secret_id": "${{ secrets.VAULT_SECRET_ID_SIGNING }}"}' | jq -r '.auth.client_token')
-          cosign sign --yes --tlog-upload=true --key hashivault://tuleap-additional-tools-signing "$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ env.BASE_IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ matrix.os_base }}-${{ matrix.php_base }})"
+          cosign sign --yes "$(docker inspect --format='{{index .RepoDigests 0}}' ghcr.io/${{ env.BASE_IMAGE_NAME }}/${{ env.IMAGE_NAME }}:${{ matrix.os_base }}-${{ matrix.php_base }})"
