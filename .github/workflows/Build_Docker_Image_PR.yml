@@ -15,4 +15,4 @@ jobs:
         with:
           persist-credentials: false
       - name: Build image
-        run: docker build -t test-build .
+        run: docker build -t test-build-${{ matrix.os_base }}-${{ matrix.php_base }} -f ${{ matrix.os_base }}.dockerfile --build-arg="PHP_BASE=${{ matrix.php_base }}" .

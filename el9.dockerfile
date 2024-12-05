@@ -1,11 +1,13 @@
-FROM rockylinux@sha256:45cc42828cc5ceeffa3a9b4f6363fb582fac3ab91f77bf403daa067f8f049f96
+FROM rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6
+
+ARG PHP_BASE
 
 ENV container docker
 
 STOPSIGNAL SIGRTMIN+3
 
-COPY tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
-COPY xdebug-fpm.ini /etc/opt/remi/php82/php.d/15-xdebug.ini
+COPY ${PHP_BASE}-tuleap-php-fpm-override.conf /etc/systemd/system/tuleap-php-fpm.service.d/override.conf
+COPY xdebug-fpm.ini /etc/opt/remi/${PHP_BASE}/php.d/15-xdebug.ini
 
 RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /etc/systemd/system/*.wants/*;\
@@ -16,6 +18,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     rm -f /lib/systemd/system/anaconda.target.wants/* && \
     dnf install -y \
         epel-release \
+        rocky-release-security \
         https://rpms.remirepo.net/enterprise/remi-release-9.rpm \
         https://ci.tuleap.net/yum/tuleap/rhel/9/dev/x86_64/tuleap-community-release.rpm && \
     dnf install -y \
@@ -41,27 +44,27 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     vim \
     mysql \
     less \
-    php82-php-intl \
-    php82-php-bcmath \
-    php82-php-gd \
-    php82-php-soap \
-    php82-php-mysqlnd \
-    php82-php-xml \
-    php82-php-mbstring \
-    php82-php-cli \
-    php82-php-opcache \
-    php82-php-process \
-    php82-php-pdo \
-    php82-php-fpm \
-    php82-php-ldap \
-    php82-php-sodium \
-    php82-php-pecl-xdebug \
-    php82-php-intl \
-    php82-php-bcmath \
-    php82-php-ffi \
-    php82-php-pecl-zip \
-    php82-php-pecl-mailparse \
-    php82-php-pecl-redis5 && \
+    ${PHP_BASE}-php-intl \
+    ${PHP_BASE}-php-bcmath \
+    ${PHP_BASE}-php-gd \
+    ${PHP_BASE}-php-soap \
+    ${PHP_BASE}-php-mysqlnd \
+    ${PHP_BASE}-php-xml \
+    ${PHP_BASE}-php-mbstring \
+    ${PHP_BASE}-php-cli \
+    ${PHP_BASE}-php-opcache \
+    ${PHP_BASE}-php-process \
+    ${PHP_BASE}-php-pdo \
+    ${PHP_BASE}-php-fpm \
+    ${PHP_BASE}-php-ldap \
+    ${PHP_BASE}-php-sodium \
+    ${PHP_BASE}-php-pecl-xdebug \
+    ${PHP_BASE}-php-intl \
+    ${PHP_BASE}-php-bcmath \
+    ${PHP_BASE}-php-ffi \
+    ${PHP_BASE}-php-pecl-zip \
+    ${PHP_BASE}-php-pecl-mailparse \
+    ${PHP_BASE}-php-pecl-redis5 && \
     dnf clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
