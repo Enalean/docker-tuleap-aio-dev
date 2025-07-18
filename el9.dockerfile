@@ -1,4 +1,4 @@
-FROM rockylinux@sha256:d7be1c094cc5845ee815d4632fe377514ee6ebcf8efaed6892889657e5ddaaa6
+FROM rockylinux/rockylinux:9.6@sha256:7620071ad66949c3aef9fd313151f0cfee46b75485990c3b03710624f5e1b7b3
 
 ARG PHP_BASE
 
@@ -43,6 +43,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     java-1.8.0-openjdk \
     openldap-clients \
     vim \
+    make \
     mysql \
     less \
     ${PHP_BASE}-php-intl \
@@ -65,7 +66,8 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     ${PHP_BASE}-php-ffi \
     ${PHP_BASE}-php-pecl-zip \
     ${PHP_BASE}-php-pecl-mailparse \
-    ${PHP_BASE}-php-pecl-redis5 && \
+    ${PHP_BASE}-php-pecl-redis5 \
+    ${PHP_BASE}-php-pecl-pcov && \
     dnf clean all && \
     rm -rf /usr/share/tuleap && \
     sed -i 's/inet_interfaces = localhost/inet_interfaces = all/' /etc/postfix/main.cf && \
@@ -73,7 +75,6 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     localedef -i pt_BR -c -f UTF-8 pt_BR.UTF-8
 
 ## Run environment
-ENV PHP_VERSION php82
 WORKDIR /usr/share/tuleap
 VOLUME [ "/data", "/usr/share/tuleap" ]
 EXPOSE 22 80 443
