@@ -2,7 +2,7 @@ FROM rockylinux/rockylinux:9.6@sha256:7620071ad66949c3aef9fd313151f0cfee46b75485
 
 ARG PHP_BASE
 
-ENV container docker
+ENV container=docker
 
 STOPSIGNAL SIGRTMIN+3
 
