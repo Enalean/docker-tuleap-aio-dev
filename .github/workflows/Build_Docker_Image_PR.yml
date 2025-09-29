@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os_base: ["el9"]
-        php_base: ["php84"]
+        php_base: ["php84", "php85"]
     runs-on: ubuntu-24.04
     permissions:
       contents: read
