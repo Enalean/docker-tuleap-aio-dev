@@ -21,6 +21,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
         rocky-release-security \
         https://rpms.remirepo.net/enterprise/remi-release-9.rpm \
         https://ci.tuleap.net/yum/tuleap/rhel/9/dev/x86_64/tuleap-community-release.rpm && \
+    dnf module enable -y mysql:8.4 && \
     dnf install -y \
     glibc-locale-source \
     glibc-langpack-en \
