@@ -35,6 +35,7 @@ RUN rm -f /lib/systemd/system/multi-user.target.wants/*;\
     tuleap-theme-flamingparrot \
     tuleap-plugin-git \
     tuleap-plugin-gitlfs \
+    tuleap-plugin-pullrequest \
     tuleap-plugin-svn \
     tuleap-plugin-hudson\* \
     tuleap-plugin-mediawiki \
